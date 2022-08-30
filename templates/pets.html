@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="bg-yellow pa3 min-vh-100">
+  <h1 class="f1 fw2 mt5">My Pet List</h1>
+  <button class="tc link dim bg-yellow ba b--black bw1 mr3 br4 ba f5 fw2"><a href="{% url 'pet_new' %}"
+      class="link black dim pv2 ph4 dib">Add Pet</a></button>
+  {% if object_list %}
+  <div class="cf">
+    {% for pet in object_list %}
+    <article class="center pa2 mv3 fl w-50 w-33-m w-20-l">
+      <div class="Pet db tc center pv3 bg-yellow">
+        <img src="{{ pet.photo.url }}"  class="w-100 db center">
+        <h1 class="f5 fw4 mb2 h2"><a href="{% url 'pet_detail' pet.pk %}" class="link black dim">{{ pet.name }}</a>
+          {% if pet.is_main %}
+          <span class="f6 fw4 bg-black white br4 dib ph2 pv1">main</span>
+          {% endif %}
+        </h1>
+        <div>
+          <button class="bb br0 bw1 pv1 ph2 dib"><a href="{% url 'pet_edit' pet.pk %}"
+              class="link black dim">EDIT</a></button>
+          <button class="bb br0 bw1 pv1 ph2 dib"><a href="{% url 'pet_delete' pet.pk %}"
+              class="link black dim">DELETE</a></button>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="mt5">
+  You have no registered pets T.T
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

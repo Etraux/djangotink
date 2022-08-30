@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock  %}
+{% block content %}
+<div class="cf relative">
+  <div class="w-100 w-40-l fl center h-vh fixed-box">
+    <div class="left-block bg-yellow pa4 flex flex-column justify-center items-center">
+      <h2 class="f1 fw1 tc">Заведи нового друга!</h2>
+      <p class="f1 fw1 tc ma0">🐕 🐈 🐩</p>
+      <p class="f4 lh-copy fw2">
+        Животные нашего городка!
+      </p>
+    </div>
+  </div>
+  <div class="w-100 w-60-l fr ma0-l pl2-l">
+    <div class="cf">
+      <h1 class="f2 fw2 pa2">Посмотрите на зверюшек!</h1>
+      {% for pet in pets %}
+      <article class="fl w-50 w-33-m w-33-l pa2 pet-item">
+        <div class=" Pet db center bg-white">
+          <a href="{% url 'pet_detail' pet.pk %}" class="link black">
+            <img src="{{ pet.photo.url }}" class="w-100 db center">
+            <h1 class="f3 fw4 mb2">{{ pet.name }}</h1>
+            <h2 class="f6 fw2 black-90 mt0">with {{ pet.owner.name }}</h2>
+            <h2 class="f6 fw2 black-90 mt0">{{ pet.animal }}</h2>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock  %}

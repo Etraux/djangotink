@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=BioRhyme+Expanded:700" rel="stylesheet">
+  <!-- Custom -->
+  <link rel="stylesheet" href="{% static 'css/tachyons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Pets</title>
+</head>
+
+<body class="sans-serif bg-near-white near-black center w-100 relative">
+  <header class="w-100 pa3 bg-white" id="Header">
+    <nav class="db dt-ns mw9 center w-100">
+      <div class="db dtc-ns v-mid tl w-20">
+        <a href="{% url 'home' %}" class="dib f5 f4-ns fw6 mt0 mb1 link black-70 logo">
+          ЖИВОТНЫЕ
+        </a>
+      </div>
+      <div class="list dib dtc-ns v-mid w-100 tl tr-ns mt2 mt0-ns f4 fw3">
+        {% if user.is_authenticated %}
+        <a href="{% url 'pets' %}" class="tc link dim black bg-yellow ba b--black-70 mr3 ph2 pv1 br3 ba f6">Мои животные</a>
+        <a href="{% url 'profile' user.pk %}"
+          class="tc link dim black bg-yellow ba b--black-70 mr3 ph2 pv1 br3 ba f6">Профиль</a>
+        <a href="{% url 'logout' %}" class="tc link dim black bg-yellow ba b--black-70 mr3 ph2 pv1 br3 ba f6">Выйти</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="tc link dim black bg-yellow ba b--black-70 mr3 ph2 pv1 br3 ba f6">Войти</a>
+        <a href="{% url 'signup' %}" class="tc link dim black bg-yellow ba b--black-70 mr3 ph2 pv1 br3 ba f6">Зарегистрироваться</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+  <section class="w-100 pa3 bg-white">
+    <div class="db dt-ns mw9 center w-100">
+      {% block content %}
+      {% endblock  %}
+    </div>
+  </section>
+</body>
+
+</html>

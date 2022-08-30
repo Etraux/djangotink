@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="center mw6 mb4">
+  <article class="w-100 pa2 center">
+    <h2 class="f1 fw2">{{ object.name }}</h2>
+    <div class=" Pet db center bg-white">
+      <img src="{{ pet.photo.url }}" class="w-100 db center">
+      <div class="mt4">
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">OWNER</span>{{ object.owner.name }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">TYPE</span>{{ object.animal }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">BIRTHDAY</span>{{ object.birthday }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">NUMBER</span>{{ object.registration_number }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">Diseases Info</span>{{ object.diseases_info }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">Allergies Info</span>{{ object.allergies_info }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">PREFERENCES</span>{{ object.preferences }}</p>
+        <p class="f5 fw2 black-90 mt0"><span class="f6 fw4 pr3">Main</span>{{ object.is_main }}</p>
+      </div>
+    </div>
+    <div class="mt4">
+      <button class="bb br0 bw1 pv1 ph2 dib">
+        <a href="{% url 'pet_edit' pet.pk %}" class="link black dim">EDIT</a>
+      </button>
+      <button class="bb br0 bw1 pv1 ph2 dib">
+        <a href="{% url 'pet_delete' pet.pk %}" class="link black dim">DELETE</a>
+      </button>
+      <button class="bb br0 bw1 pv1 ph2 dib">
+        <a href="{% url 'pets' %}" class="link black dim">Back to List</a>
+      </button>
+    </div>
+  </article>
+</div>
+{% endblock %}
